@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Chart from "./components/Chart"
+import Table from "./components/Table"
 import { getPlanets } from "./services/api"
 import "./App.css"
 
@@ -20,12 +21,19 @@ function App() {
         </span>
       </div>
       {results.length > 0 ? (
-        <Chart
-          names={results.map((result) => result.name)}
-          populations={results.map((result) => result.population)}
-        />
+        <div>
+          <div className="mb-8">
+            <Chart
+              names={results.map((result) => result.name)}
+              populations={results.map((result) => result.population)}
+            />
+          </div>
+          <div>
+            <Table results={results} />
+          </div>
+        </div>
       ) : (
-        <span>No data found</span>
+        <span>Loading data...</span>
       )}
     </div>
   )
