@@ -29,7 +29,7 @@ function App() {
             />
           </div>
           <div>
-            <Table results={results} />
+            <Table />
           </div>
         </div>
       ) : (

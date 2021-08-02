@@ -1,10 +1,32 @@
-export default function Table(props) {
-  const { results } = props
+import { useEffect, useState } from "react"
+import { getPlanetsPerPage } from "../services/api"
+
+export default function Table() {
+  const [data, setData] = useState([])
+
+  const handlePrevious = () => {
+    getPlanetsPerPage(data.previous).then((res) => {
+      setData(res)
+    })
+  }
+
+  const handleNext = () => {
+    getPlanetsPerPage(data.next).then((res) => {
+      console.log(res)
+      setData(res)
+    })
+  }
+
+  useEffect(() => {
+    getPlanetsPerPage().then((res) => {
+      setData(res.data)
+    })
+  }, [])
 
   return (
     <div className="flex flex-col">
       <div className="sm:px-6 lg:px-8 overflow-x-auto">
-        <div className="overflow-hidden border border-gray-200 rounded-lg">
+        <div className="overflow-hidden border border-gray-200 rounded-lg mb-4">
           <table className="min-w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -30,9 +52,9 @@ export default function Table(props) {
               </tr>
             </thead>
             <tbody className="text-center">
-              {results.map((result) => {
+              {data?.results?.map((result, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td className="px-6 py-4 text-sm font-medium">
                       {result.name}
                     </td>
@@ -59,6 +81,20 @@ export default function Table(props) {
               })}
             </tbody>
           </table>
+        </div>
+        <div className="flex flex-row justify-center">
+          <button
+            className="mr-4 px-4 py-2 bg-red-500 text-white text-sm font-bold rounded-lg hover:bg-red-700 duration-300"
+            onClick={handlePrevious}
+          >
+            Previous Page
+          </button>
+          <button
+            className="px-4 py-2 bg-red-500 text-white text-sm font-bold rounded-lg hover:bg-red-700 duration-300"
+            onClick={handleNext}
+          >
+            Next Page
+          </button>
         </div>
       </div>
     </div>
