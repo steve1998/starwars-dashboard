@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { getPlanetsPerPage } from "../services/api"
 
 export default function Table() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
 
-  const handlePrevious = () => {
-    getPlanetsPerPage(data.previous).then((res) => {
-      setData(res)
-    })
-  }
+  const handlePrevious = useCallback(async () => {
+    if (data.previous !== null) {
+      const res = await getPlanetsPerPage(data.previous)
+      setData(res.data)
+    }
+  }, [data])
 
-  const handleNext = () => {
-    getPlanetsPerPage(data.next).then((res) => {
-      console.log(res)
-      setData(res)
-    })
-  }
+  const handleNext = useCallback(async () => {
+    if (data.next !== null) {
+      const res = await getPlanetsPerPage(data.next)
+      setData(res.data)
+    }
+  }, [data])
 
   useEffect(() => {
     getPlanetsPerPage().then((res) => {
