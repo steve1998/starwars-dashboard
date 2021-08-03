@@ -28,7 +28,7 @@ export default function Table() {
     <div className="flex flex-col relative">
       {data !== null ? (
         <div className="overflow-x-auto w-screen h-full px-16">
-          <div className="overflow-x-scroll border border-gray-200 rounded-lg mb-4">
+          <div className="overflow-x-scroll lg:overflow-hidden border border-gray-200 rounded-lg mb-4">
             <table className="min-w-full">
               <thead className="bg-gray-50">
                 <tr>

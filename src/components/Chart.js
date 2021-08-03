@@ -27,7 +27,14 @@ export default function Chart() {
       },
     },
     scales: {
-      yAxis: {
+      yAxes: {
+        title: {
+          display: true,
+          text: "Number of Population per Planet (in logarithmic scale)",
+          font: {
+            size: 14,
+          },
+        },
         type: "logarithmic",
         position: "left", // `axis` is determined by the position as `'y'`
         ticks: {
@@ -36,7 +43,14 @@ export default function Chart() {
           },
         },
       },
-      xAxis: {
+      xAxes: {
+        title: {
+          display: true,
+          text: "List of Planets",
+          font: {
+            size: 14,
+          },
+        },
         ticks: {
           autoSkip: false,
           font: {

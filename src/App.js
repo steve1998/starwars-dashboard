@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="flex flex-col items-center mx-16 my-16">
       <div className="mb-16">
-        <span className="relative font-bold text-black duration-300 hover:text-gray-600 text-4xl">
+        <span className="text-md font-bold text-black duration-300 hover:text-gray-600 lg:text-4xl">
           Star Wars Planets Data Visualization
         </span>
       </div>
